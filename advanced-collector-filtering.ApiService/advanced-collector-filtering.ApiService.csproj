@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\advanced-collector-filtering.ServiceDefaults\advanced-collector-filtering.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
+    <PackageReference Include="Aspire.Microsoft.Azure.Cosmos" Version="9.1.0" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.6.8" />
+  </ItemGroup>
+
+</Project>

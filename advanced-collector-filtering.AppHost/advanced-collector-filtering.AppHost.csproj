@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>51890c95-5d7c-4253-9075-adffbaceece2</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\advanced-collector-filtering.ApiService\advanced-collector-filtering.ApiService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.CosmosDB" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="9.4.0" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.46.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\advanced-collector-filtering.ApiService\Models\WeatherLocation.cs" />
+  </ItemGroup>
+
+</Project>
