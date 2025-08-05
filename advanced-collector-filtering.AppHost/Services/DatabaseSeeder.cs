@@ -36,7 +36,7 @@ public static class DatabaseSeeder
     {
         try
         {
-            logger.LogInformation("Starting database seeding process");
+            logger.LogDebug("Starting database seeding process");
 
             var container = cosmosClient.GetContainer(databaseName, containerName);
             var locations = GetSeedLocations();
@@ -47,7 +47,7 @@ public static class DatabaseSeeder
                 {
                     // Item doesn't exist, create it
                     await container.CreateItemAsync(location, new PartitionKey(location.Id));
-                    logger.LogInformation("Created weather data for {Location}", location.Location);
+                    logger.LogDebug("Created weather data for {Location}", location.Location);
                 }
                 catch (Exception ex)
                 {
@@ -55,11 +55,10 @@ public static class DatabaseSeeder
                 }
             }
 
-            logger.LogInformation("Database seeding completed successfully");
+            logger.LogDebug("Database seeding completed successfully");
         }
         catch (Exception ex)
         {
-            logger.LogInformation("ConnectionString: {ConnectionString}", cosmosClient.Endpoint);
             logger.LogError(ex, "Failed to complete database seeding");
             throw;
         }
