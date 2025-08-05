@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +10,12 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
 namespace Microsoft.Extensions.Hosting;
+
+public static class DiagnosticSettings
+{
+    public static Lazy<ActivitySource> ActivitySourceInternal = new(() => new ActivitySource(Assembly.GetExecutingAssembly().GetName().Name!));
+    public static ActivitySource ActivitySource = ActivitySourceInternal.Value;
+}
 
 // Adds common .NET Aspire services: service discovery, resilience, health checks, and OpenTelemetry.
 // This project should be referenced by each service project in your solution.
@@ -70,6 +78,7 @@ public static class Extensions
                             && !context.Request.Path.StartsWithSegments(AlivenessEndpointPath)
                     )
                     .AddSource("Azure.Cosmos.Operation")
+                    .AddSource(DiagnosticSettings.ActivitySource.Name)
                     .AddHttpClientInstrumentation();
             });
 

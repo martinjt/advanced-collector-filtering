@@ -39,6 +39,7 @@ if (app.Environment.IsDevelopment())
 // Get weather by location (point read)
 app.MapGet("/weather/{country}/{location}", async (string country, string location, IWeatherService weatherService) =>
 {
+    using var activity = DiagnosticSettings.ActivitySource.StartActivity("GetWeatherByLocation");
     var weather = await weatherService.GetWeatherByLocationAsync(country, location);
     return weather is not null ? Results.Ok(weather) : Results.NotFound($"Weather data for '{location}' not found");
 })
@@ -48,6 +49,7 @@ app.MapGet("/weather/{country}/{location}", async (string country, string locati
 
 app.MapGet("/weather/{country}", async (string country, IWeatherService weatherService) =>
 {
+    using var activity = DiagnosticSettings.ActivitySource.StartActivity("GetWeatherByCountry");
     var locations = await weatherService.GetWeatherLocationsByCountry(country);
     return Results.Ok(locations);
 })
