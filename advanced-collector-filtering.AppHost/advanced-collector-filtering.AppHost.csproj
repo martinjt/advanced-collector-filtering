@@ -19,6 +19,7 @@
     <PackageReference Include="Aspire.Hosting.Azure.CosmosDB" Version="9.1.0" />
     <PackageReference Include="Aspire.Hosting.Redis" Version="9.4.0" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.46.1" />
+    <PackageReference Include="PracticalOtel.OtelCollector.Aspire" Version="0.9.9-rc" />
   </ItemGroup>
 
   <ItemGroup>

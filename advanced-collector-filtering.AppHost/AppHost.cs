@@ -3,6 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+var collector = builder.AddOpenTelemetryCollector("collector", "./config.yaml")
+    .WithAppForwarding();
+
 #pragma warning disable ASPIRECOSMOSDB001
 var cosmosdb = builder.AddAzureCosmosDB("weather")
     .RunAsPreviewEmulator(emulator =>
